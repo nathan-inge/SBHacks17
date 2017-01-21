@@ -4,7 +4,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
     defaultConfig {
-        applicationId "hacks.sb.sbhacks17"
+        applicationId "applications.flatirons.setmapinitiallocation"
         minSdkVersion 16
         targetSdkVersion 25
         versionCode 1
@@ -20,6 +20,7 @@ android {
 }
 
 dependencies {
+    compile 'com.esri.arcgisruntime:arcgis-android:100.0.0'
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
