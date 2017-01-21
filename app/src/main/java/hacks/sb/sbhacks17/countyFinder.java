@@ -22,15 +22,15 @@ public class countyFinder {
     final private String TYPE_DENSITY = "density";
     final private static int COLUMN_POPULATION_DENSITY = 3;
     private boolean densitySearch;
-    private double densityLowerBound;
-    private double densityUpperBound;
+    private int densityLowerBound;
+    private int densityUpperBound;
 
 
     final private String TYPE_HOUSEHOLD_INCOME = "householdIncome";
     final private static int COLUMN_POPULATION_MEDIAN_INCOME = 4;
     private boolean householdIncomeSearch;
-    private double householdIncomeLowerBound;
-    private double householdIncomeUpperBound;
+    private int householdIncomeLowerBound;
+    private int householdIncomeUpperBound;
 
 
 
@@ -58,7 +58,7 @@ public class countyFinder {
 
 
 
-    public void addSearch(String search, double lowerBound, double upperBound){
+    public void addSearch(String search, int lowerBound, int upperBound){
 
         switch(search){
             case "density":
@@ -117,7 +117,7 @@ public class countyFinder {
 
 
 
-    private countyList find(double lowerBound, double upperBound, int column, countyList currentList, String type) {
+    private countyList find(int lowerBound, int upperBound, int column, countyList currentList, String type) {
         if(currentList.isNewList) {
             countyList list = new countyList();
 
