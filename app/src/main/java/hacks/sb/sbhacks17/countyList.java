@@ -2,6 +2,9 @@
  * Created by MLH-Admin on 1/21/2017.
  */
 package hacks.sb.sbhacks17;
+/**
+ * Created by MLH-Admin on 1/21/2017.
+ */
 public class countyList {
     county [] countyList;
     private int allocated;
@@ -9,13 +12,15 @@ public class countyList {
     private int currentCounty;
     public boolean isNewList;
 
-public countyList(){
-    countyList = new county [10];
-    allocated = 10;
-    usedSpace = 0;
-    currentCounty = 0;
-    isNewList = false;
-}
+
+
+    public countyList(){
+        countyList = new county [10];
+        allocated = 10;
+        usedSpace = 0;
+        currentCounty = 0;
+        isNewList = false;
+    }
 
 
 
@@ -31,7 +36,7 @@ public countyList(){
 
     public countyList(countyList copyFrom){
         for (int count = 0; count < usedSpace; count++)
-        copyFrom.addCounty(countyList[count]);
+            copyFrom.addCounty(countyList[count]);
 
 
     }
@@ -44,23 +49,28 @@ public countyList(){
 
 
 
-public void refreshFlow(){
-    currentCounty = 0;
+    public void refreshFlow(){
+        currentCounty = 0;
 
-}
-
-
+    }
 
 
 
-public void removePrevious(){
-    int indexToRemove = currentCounty - 1;
+
+
+    public void removePrevious(){
+
+        int indexToRemove = currentCounty - 1;
+        System.out.println("removing " + indexToRemove + " cuz it is " + countyList[indexToRemove].householdIncome);
         countyList newList = new countyList();
-    for (int count = 0; count < usedSpace; count++) {
-        if(count != indexToRemove)
-        newList.addCounty(countyList[count]);
+        for (int count = 0; count < usedSpace; count++) {
+            if (count != indexToRemove) {
+                System.out.println("keeping " + count);
+                newList.addCounty(countyList[count]);
+            }
+        }
+        usedSpace--;
     }
-}
 
 
 
@@ -71,22 +81,22 @@ public void removePrevious(){
 
 
 
-public county next(boolean moveOn){
+    public county next(boolean moveOn){
 
-    if(currentCounty < usedSpace){
-        if(moveOn)
-            currentCounty++;
-        return countyList[currentCounty - 1];
-    } else
-        return new county();
+        if(currentCounty < usedSpace){
+            if(moveOn)
+                currentCounty++;
+            return countyList[currentCounty - 1];
+        } else
+            return new county();
 
-}
+    }
 
 
 
-public boolean ended(){
-    return currentCounty < usedSpace;
-}
+    public boolean ended(){
+        return currentCounty >= usedSpace;
+    }
 
 
 
