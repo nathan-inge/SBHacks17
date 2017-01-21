@@ -28,7 +28,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         rh = new RegionHighlighter(mMapView);
-        mMapView.addMapScaleChangedListener(rh);
+        //rh.sendTo(mMapView.getContext(), "louisville", "co", "80027");
+        //mMapView.addMapScaleChangedListener(rh);
         mMapView.setMap(mMap);
 
         Intent fromHome = getIntent();
@@ -46,15 +47,15 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        //searches data for population density range
+        /*//searches data for population density range
         countyFinder finder = new countyFinder();
         finder.addSearch("density", 20, 50);
         finder.addSearch("household.income", median_household_income.getFloor(), median_household_income.getCeiling());
         countyList listPop = finder.search();
-        int numCounties = listPop.size();
+        int numCounties = listPop.size(); */
 
         Context context = getApplicationContext();
-        String text = "Counties: " + Integer.toString(numCounties);
+        String text = "Counties: " ;
         int duration = Toast.LENGTH_SHORT;
 
         Toast toast = Toast.makeText(context, text, duration);
