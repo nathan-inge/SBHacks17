@@ -20,9 +20,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //mMapView = (MapView) findViewById(R.id.mapView);
-        //ArcGISMap map = new ArcGISMap(Basemap.Type.STREETS_NIGHT_VECTOR, 34.056295, -117.195800, 16);
-        //mMapView.setMap(map);
+        mMapView = (MapView) findViewById(R.id.mapView);
+        ArcGISMap map = new ArcGISMap(Basemap.Type.STREETS_NIGHT_VECTOR, 34.056295, -117.195800, 16);
+        mMapView.setMap(map);
 
         Intent fromHome = getIntent();
 
@@ -59,6 +59,19 @@ public class MainActivity extends AppCompatActivity {
             return new range(0, 0);
         }
 
+    }
+
+
+    @Override
+    protected void onPause(){
+        mMapView.pause();
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        mMapView.resume();
     }
 
 
