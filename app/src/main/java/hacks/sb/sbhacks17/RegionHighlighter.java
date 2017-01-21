@@ -1,6 +1,14 @@
 package hacks.sb.sbhacks17;
 
+import android.content.ActivityNotFoundException;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 
 import com.esri.arcgisruntime.geometry.Point;
 import com.esri.arcgisruntime.geometry.SpatialReferences;
@@ -9,6 +17,7 @@ import com.esri.arcgisruntime.mapping.view.GraphicsOverlay;
 import com.esri.arcgisruntime.mapping.view.MapScaleChangedEvent;
 import com.esri.arcgisruntime.mapping.view.MapScaleChangedListener;
 import com.esri.arcgisruntime.mapping.view.MapView;
+import com.esri.arcgisruntime.symbology.PictureMarkerSymbol;
 import com.esri.arcgisruntime.symbology.SimpleMarkerSymbol;
 import com.esri.arcgisruntime.symbology.SimpleRenderer;
 import com.esri.arcgisruntime.util.ListenableList;
@@ -46,9 +55,36 @@ public class RegionHighlighter implements MapScaleChangedListener{
         pointGraphicOverlay.setRenderer(pointRenderer);
         pointGraphicOverlay.getGraphics().add(pointGraphic);
         mMapView.getGraphicsOverlays().add(pointGraphicOverlay);
+
+
+        Context context = mMapView.getContext();
+        Bitmap bmp = BitmapFactory.decodeResource(context.getResources(), R.mipmap.zillow_icon);
+        BitmapDrawable img = new BitmapDrawable(context.getResources(), bmp);
+        PictureMarkerSymbol zilloPic = new PictureMarkerSymbol(img);
+
+        Point pointGeometry2 = new Point(x, y, SpatialReferences.getWebMercator());
+        Graphic pointGraphic2 = new Graphic(pointGeometry2);
+        GraphicsOverlay pointGraphicOverlay2 = new GraphicsOverlay();
+        SimpleRenderer pointRenderer2 = new SimpleRenderer(zilloPic);
+        pointGraphicOverlay2.setRenderer(pointRenderer2);
+        pointGraphicOverlay2.getGraphics().add(pointGraphic2);
+        mMapView.getGraphicsOverlays().add(pointGraphicOverlay2);
     }
 
     public void mapScaleChanged(MapScaleChangedEvent mapScaleChangedEvent) {
         reset();
     }
-}
+
+    public void sendTo(Context context, String city, String state, String zip){
+        String urlString="http://www.zillow.com/" + city + "-"+state+"-"+zip+"/";
+        Intent intent=new Intent(Intent.ACTION_VIEW, Uri.parse(urlString));
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setPackage("com.android.chrome");
+        try {
+            context.startActivity(intent);
+        } catch (ActivityNotFoundException ex) {
+            // Chrome browser presumably not installed so allow user to choose instead
+            intent.setPackage(null);
+            context.startActivity(intent);
+        }
+    }}
