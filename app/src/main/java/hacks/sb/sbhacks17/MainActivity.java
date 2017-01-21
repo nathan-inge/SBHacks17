@@ -12,5 +12,6 @@ public class MainActivity extends AppCompatActivity {
         //This is a commit to see if this works
         //This is a change I am making in Android Studio
         //Nathans change
+        //I really hope rick can see this
     }
 }
