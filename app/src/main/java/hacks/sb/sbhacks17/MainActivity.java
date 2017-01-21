@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Population Density
         String pop_density_str = fromHome.getStringExtra("POP_DENSITY");
-        range population_density = formatRange(pop_density_str);   //returns range function of
+        range population_density = formatRange(pop_density_str);
         TextView popDensity = (TextView) findViewById(R.id.pop_density);
         popDensity.setText("Population density range: " + population_density.getFloor() + " to " + population_density.getCeiling());
 
