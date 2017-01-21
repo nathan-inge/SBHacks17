@@ -32,34 +32,13 @@ public class MainActivity extends AppCompatActivity {
         //mMapView.addMapScaleChangedListener(rh);
         mMapView.setMap(mMap);
 
-        Intent fromHome = getIntent();
-
-        //Population Density
-        String pop_density_str = fromHome.getStringExtra("POP_DENSITY");
-        range population_density = formatRange(pop_density_str);
 
 
 
 
-        //Median Household Income
-        String med_income_str = fromHome.getStringExtra("MED_INCOME");
-        range median_household_income = formatRange(med_income_str);
 
 
 
-        /*//searches data for population density range
-        countyFinder finder = new countyFinder();
-        finder.addSearch("density", 20, 50);
-        finder.addSearch("household.income", median_household_income.getFloor(), median_household_income.getCeiling());
-        countyList listPop = finder.search();
-        int numCounties = listPop.size(); */
-
-        Context context = getApplicationContext();
-        String text = "Counties: " ;
-        int duration = Toast.LENGTH_SHORT;
-
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
 
 
 
@@ -68,20 +47,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public static range formatRange(String raw_data) {
-        try{
-            String[] parts = raw_data.split(" - ");
-            String floor_str = parts[0].replaceAll("[^\\w\\s]","");
-            String ceiling_str = parts[1].replaceAll("[^\\w\\s]","");
-            int floor = Integer.parseInt(floor_str);
-            int ceiling = Integer.parseInt(ceiling_str);
 
-            return new range(floor, ceiling);
-        }catch (ArrayIndexOutOfBoundsException e){
-            return new range(0, 0);
-        }
-
-    }
 
 
     @Override
