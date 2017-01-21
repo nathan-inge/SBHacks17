@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         rh = new RegionHighlighter(mMapView);
-        //rh.sendTo(mMapView.getContext(), "louisville", "co", "80027");
+        //rh.sendTo(mMapView.getContext(), "louisville", "co", "80027"); this is sketch
         //mMapView.addMapScaleChangedListener(rh);
         mMapView.setMap(mMap);
 
