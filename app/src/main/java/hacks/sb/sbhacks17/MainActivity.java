@@ -44,14 +44,14 @@ public class MainActivity extends AppCompatActivity {
 
 
         //searches data for population density range
-        //countyFinder finder = new countyFinder();
-        //finder.addSearch("density", population_density.getFloor(),population_density.getCeiling());
-        //finder.addSearch("household.income", median_household_income.getFloor(), median_household_income.getCeiling());
-        //countyList listPop = finder.search();
-        //int numCounties = listPop.size();
+        countyFinder finder = new countyFinder();
+        finder.addSearch("density", 20, 50);
+        finder.addSearch("household.income", median_household_income.getFloor(), median_household_income.getCeiling());
+        countyList listPop = finder.search();
+        int numCounties = listPop.size();
 
         Context context = getApplicationContext();
-        String text = "Hello";
+        String text = "Counties: ";
         int duration = Toast.LENGTH_SHORT;
 
         Toast toast = Toast.makeText(context, text, duration);
