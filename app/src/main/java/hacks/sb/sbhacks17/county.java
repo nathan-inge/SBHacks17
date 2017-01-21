@@ -3,16 +3,17 @@
  */
 
 package hacks.sb.sbhacks17;
+
 public class county {
     public String name;
     public double population_density;
     public double householdIncome;
     public int row;
 
-    public county(String name, double density, double householdIncome, int row){
+    public county(String name, double density, double householdIncomeToAdd, int row){
         this.name = name;
         population_density = density;
-        this.householdIncome = householdIncome;
+        this.householdIncome = householdIncomeToAdd;
         this.row = row;
 
     }
@@ -30,7 +31,7 @@ public class county {
     public county(county copyFrom){
         name = copyFrom.name;
         population_density = copyFrom.population_density;
-        householdIncome = copyFrom.population_density;
+        householdIncome = copyFrom.householdIncome;
         row = copyFrom.row;
     }
 

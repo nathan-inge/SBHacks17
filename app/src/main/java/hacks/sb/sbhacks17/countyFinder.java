@@ -7,6 +7,10 @@ import jxl.Workbook;
 import java.io.File;
 import jxl.*;
 
+import jxl.Workbook;
+import java.io.File;
+import jxl.*;
+
 
 /**
  *  * Created by MLH-Admin on 1/21/2017.
@@ -19,14 +23,14 @@ public class countyFinder {
 
     final private static int COLUMN_COUNTY_NAME = 0;
 
-    final private String TYPE_DENSITY = "density";
+    final public String TYPE_DENSITY = "density";
     final private static int COLUMN_POPULATION_DENSITY = 3;
     private boolean densitySearch;
     private int densityLowerBound;
     private int densityUpperBound;
 
 
-    final private String TYPE_HOUSEHOLD_INCOME = "householdIncome";
+    final public String TYPE_HOUSEHOLD_INCOME = "household.income";
     final private static int COLUMN_POPULATION_MEDIAN_INCOME = 4;
     private boolean householdIncomeSearch;
     private int householdIncomeLowerBound;
@@ -40,11 +44,11 @@ public class countyFinder {
 
     public countyFinder(){
         try{
-        workbook = Workbook.getWorkbook(new File("stats.xls"));
-        sheet = workbook.getSheet(0);
+            workbook = Workbook.getWorkbook(new File("stats.xls"));
+            sheet = workbook.getSheet(0);
 
-        householdIncomeSearch = false;
-        densitySearch = false;
+            householdIncomeSearch = false;
+            densitySearch = false;
 
         } catch (java.io.IOException z) {
             System.out.println ("file not read");
@@ -61,15 +65,15 @@ public class countyFinder {
     public void addSearch(String search, int lowerBound, int upperBound){
 
         switch(search){
-            case "density":
+            case TYPE_DENSITY:
                 densitySearch = true;
                 densityLowerBound = lowerBound;
                 densityUpperBound = upperBound;
                 break;
-            case "household.income":
+            case TYPE_HOUSEHOLD_INCOME:
                 householdIncomeSearch = true;
                 householdIncomeLowerBound = lowerBound;
-                householdIncomeUpperBound = lowerBound;
+                householdIncomeUpperBound = upperBound;
                 break;
 
 
@@ -97,7 +101,7 @@ public class countyFinder {
 
 
         if (householdIncomeSearch) {
-            list = find(householdIncomeLowerBound, householdIncomeUpperBound, COLUMN_POPULATION_MEDIAN_INCOME,list, TYPE_HOUSEHOLD_INCOME);
+            list = find(0, 30000, 4,list, TYPE_HOUSEHOLD_INCOME);
         }
 
         return list;
@@ -133,7 +137,8 @@ public class countyFinder {
             return list;
         } else {
 
-            while (!currentList.ended()) {
+            while (!(currentList.ended())) {
+                System.out.println("hello im a bitch");
                 double field = currentList.next(true).getField(type);
                 if (field < lowerBound || field > upperBound) {
                     currentList.removePrevious();
@@ -152,7 +157,7 @@ public class countyFinder {
     private county extractCounty(int row){
         String name = getString(COLUMN_COUNTY_NAME, row);
         double population_density = getDouble(COLUMN_POPULATION_DENSITY, row);
-        double householdIncome = getDouble(COLUMN_POPULATION_MEDIAN_INCOME, row);
+        double householdIncome = getDouble(4, row);
 
         return new county (name,population_density,householdIncome, row);
     }
@@ -165,7 +170,7 @@ public class countyFinder {
 
 
 
-    private Cell getCell(int column, int row){
+    private Cell importCell(int column, int row){
         return sheet.getCell(column,row);
 
 
@@ -176,15 +181,15 @@ public class countyFinder {
 
     private double getDouble(int column, int row){
         assert (column !=0 && row != 1);
-        Cell newCell = getCell(column,row);
+        Cell newCell = importCell(column,row);
         double populationDensity = Double.parseDouble(newCell.getContents().replace(",","."));
         return populationDensity;
     }
 
-
+// yo
 
     private String getString(int column, int row){
-        Cell newCell = getCell(column,row);
+        Cell newCell = importCell(column,row);
         String populationDensity = newCell.getContents();
         return populationDensity;
     }
