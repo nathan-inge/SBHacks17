@@ -25,14 +25,40 @@ public class MainActivity extends AppCompatActivity {
         //mMapView.setMap(map);
 
         Intent fromHome = getIntent();
-        String pop_floor = fromHome.getStringExtra("POP_FLOOR");
-        String pop_ceiling = fromHome.getStringExtra("POP_CEILING");
 
-        TextView popFloor = (TextView) findViewById(R.id.pop_floor);
-        TextView popCeiling = (TextView) findViewById(R.id.pop_ceiling);
-        popFloor.setText(pop_floor);
-        popCeiling.setText(pop_ceiling);
+        //Population Density
+        String pop_density_str = fromHome.getStringExtra("POP_DENSITY");
+        range population_density = formatRange(pop_density_str);   //returns range function of
+        TextView popDensity = (TextView) findViewById(R.id.pop_density);
+        popDensity.setText("Population density range: " + population_density.getFloor() + " to " + population_density.getCeiling());
 
+        //Median Household Income
+        String med_income_str = fromHome.getStringExtra("MED_INCOME");
+        range median_household_income = formatRange(med_income_str);
+        TextView medIncome = (TextView) findViewById(R.id.med_income);
+        medIncome.setText("Median household income range: " + median_household_income.getFloor() +" to " + median_household_income.getCeiling());
+
+
+
+
+
+
+    }
+
+
+    public static range formatRange(String raw_data) {
+        if(raw_data == "No preference")
+            return new range(0,0);
+        else {
+            String[] parts = raw_data.split(" - ");
+            String floor_str = parts[0].replaceAll("[^\\w\\s]","");
+            String ceiling_str = parts[1].replaceAll("[^\\w\\s]","");
+            int floor = Integer.parseInt(floor_str);
+            int ceiling = Integer.parseInt(ceiling_str);
+
+            return new range(floor, ceiling);
+
+        }
 
     }
 

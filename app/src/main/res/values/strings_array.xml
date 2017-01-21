@@ -11,4 +11,16 @@
         <item>1000000 - 5000000</item>
         <item>5000000 - 1000000</item>
     </string-array>
+
+    <string-array name="house_income">
+        <item>No preference</item>
+        <item>$1000 - $10000</item>
+        <item>$10000 - $50000</item>
+        <item>$50000 - $150000</item>
+        <item>$150000 - $300000</item>
+        <item>$300000 - $500000</item>
+        <item>$500000 - $1000000</item>
+        <item>$1000000 - $5000000</item>
+        <item>$5000000 - $1000000</item>
+    </string-array>
 </resources>
