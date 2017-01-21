@@ -45,24 +45,11 @@ public class Home extends AppCompatActivity {
         spinnerMedIncome.setAdapter(medIncome);
 
 
-        range population_density = formatRange(spinnerPop.getSelectedItem().toString());
-        range median_household_income = formatRange(spinnerMedIncome.getSelectedItem().toString());
 
-        /*//searches data for population density range
-        countyFinder finder = new countyFinder();
-        finder.addSearch("density", 20, 50);
-        finder.addSearch("household.income", median_household_income.getFloor(), median_household_income.getCeiling());
-        countyList listPop = finder.search();
-        int numCounties = listPop.size();
 
-        Context context = getApplicationContext();
-        String text = "Counties: " + Integer.toString(numCounties);
-        int duration = Toast.LENGTH_SHORT;
 
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
 
-        */
+
 
 
     }
@@ -71,6 +58,16 @@ public class Home extends AppCompatActivity {
 
         Intent intent = new Intent(this, MainActivity.class);
 
+
+        /*range population_density = formatPopRange(spinnerPop.getSelectedItem().toString());
+        range median_household_income = formatIncomeRange(spinnerMedIncome.getSelectedItem().toString());
+
+        //searches data for population density range
+        countyFinder finder = new countyFinder();
+        finder.addSearch("density", 20, 50);
+        finder.addSearch("household.income", median_household_income.getFloor(), median_household_income.getCeiling());
+        countyList listPop = finder.search();
+        int numCounties = listPop.size();*/
 
         startActivity(intent);
     }
@@ -81,18 +78,74 @@ public class Home extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public static range formatRange(String raw_data) {
-        try{
-            String[] parts = raw_data.split(" - ");
-            String floor_str = parts[0].replaceAll("[^\\w\\s]","");
-            String ceiling_str = parts[1].replaceAll("[^\\w\\s]","");
-            int floor = Integer.parseInt(floor_str);
-            int ceiling = Integer.parseInt(ceiling_str);
+    public static range formatPopRange(String raw_data) {
+        int floor;
+        int ceiling;
 
-            return new range(floor, ceiling);
-        }catch (ArrayIndexOutOfBoundsException e){
-            return new range(0, 0);
+        if(raw_data == "Countryside"){
+            floor = 0;
+            ceiling = 500;
         }
+        else if(raw_data == "Small Town"){
+            floor = 500;
+            ceiling = 3000;
+        }
+        else if(raw_data == "Large Town"){
+            floor = 3000;
+            ceiling = 5000;
+        }
+        else if(raw_data == "City"){
+            floor = 5000;
+            ceiling = 10000;
+        }
+        else if(raw_data == "Mega City"){
+            floor = 5000;
+            ceiling = 50000;
+        }
+        else{
+            floor = 0;
+            ceiling = 50000;
+        }
+
+
+        return new range(floor, ceiling);
+
+
+    }
+
+
+    public static range formatIncomeRange(String raw_data) {
+        int floor;
+        int ceiling;
+
+        if(raw_data == "Lower Class"){
+            floor = 0;
+            ceiling = 25000;
+        }
+        else if(raw_data == "Lower Middle Class"){
+            floor = 25000;
+            ceiling = 60000;
+        }
+        else if(raw_data == "Middle Class"){
+            floor = 60000;
+            ceiling = 100000;
+        }
+        else if(raw_data == "Upper Middle Class"){
+            floor = 100000;
+            ceiling = 150000;
+        }
+        else if(raw_data == "Upper Class"){
+            floor = 150000;
+            ceiling = 1000000;
+        }
+        else{
+            floor = 0;
+            ceiling = 50000;
+        }
+
+
+        return new range(floor, ceiling);
+
 
     }
 
