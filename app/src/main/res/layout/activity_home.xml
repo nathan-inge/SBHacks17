@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_home"
+    android:title="DreamHouse"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -10,22 +11,73 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="hacks.sb.sbhacks17.Home">
 
-    <Button
-        android:text="Streets"
+    <TextView
+        android:text="Selected desired characteristics of your dream house:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:onClick="toStreetMap"
-        android:id="@+id/button" />
+        android:id="@+id/Prompt" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="47dp"
+        android:id="@+id/spinnerCrime"
+        android:layout_below="@+id/spinnerPop"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="59dp"
+        android:id="@+id/spinnerPop"
+        android:layout_below="@+id/Prompt"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Population density (people/sq mi):"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/spinnerPop"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="28dp"
+        android:id="@+id/textPop" />
+
+    <TextView
+        android:text="Crime:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textCrime"
+        android:layout_marginTop="22dp"
+        android:layout_below="@+id/spinnerPop"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="Median Household Income:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textIncome"
+        android:layout_marginBottom="17dp"
+        android:layout_above="@+id/spinnerIncome"
+        android:layout_centerHorizontal="true" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerIncome"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
-        android:text="Topographic"
+        android:text="Find my DreamHome!"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/button"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="58dp"
-        android:onClick="toToPoMap"
-        android:id="@+id/button2" />
+        android:onClick="showMap"
+        android:id="@+id/showMap" />
+
 </RelativeLayout>
