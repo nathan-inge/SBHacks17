@@ -11,6 +11,7 @@ import com.esri.arcgisruntime.mapping.view.MapView;
 public class TopographicMap extends AppCompatActivity {
 
     private MapView mMapView;
+    private RegionHighlighter rh;
 
 
     @Override
@@ -22,7 +23,8 @@ public class TopographicMap extends AppCompatActivity {
         //ArcGISMap map = new ArcGISMap(Basemap.Type.TOPOGRAPHIC, 34.056295, -117.195800, 16);
         ArcGISMap map = new ArcGISMap("https://dreamhouse.maps.arcgis.com/home/webmap/viewer.html?webmap=f2435c0e48324a0d85df41d4ec8edc9c");
 
-
+        rh = new RegionHighlighter(mMapView);
+        mMapView.addMapScaleChangedListener(rh);
 
         mMapView.setMap(map);
     }
