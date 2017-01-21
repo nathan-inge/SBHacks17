@@ -18,14 +18,14 @@
         android:layout_centerHorizontal="true"
         android:id="@+id/Prompt" />
 
-    <Spinner
-        android:layout_width="match_parent"
+    <TextView
+        android:text="Population density (people/sq mi):"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="47dp"
-        android:id="@+id/spinnerCrime"
-        android:layout_below="@+id/spinnerPop"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignBottom="@+id/spinnerPop"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="28dp"
+        android:id="@+id/textPop" />
 
     <Spinner
         android:layout_width="match_parent"
@@ -37,39 +37,23 @@
         android:layout_alignParentStart="true" />
 
     <TextView
-        android:text="Population density (people/sq mi):"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/spinnerPop"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="28dp"
-        android:id="@+id/textPop" />
-
-    <TextView
-        android:text="Crime:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textCrime"
-        android:layout_marginTop="22dp"
-        android:layout_below="@+id/spinnerPop"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
         android:text="Median Household Income:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textIncome"
-        android:layout_marginBottom="17dp"
-        android:layout_above="@+id/spinnerIncome"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/spinnerPop"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp" />
 
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/spinnerIncome"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_below="@+id/textIncome"
+        android:layout_alignRight="@+id/Prompt"
+        android:layout_alignEnd="@+id/Prompt" />
+
+
 
     <Button
         android:text="Find my DreamHome!"
@@ -79,5 +63,7 @@
         android:layout_centerHorizontal="true"
         android:onClick="showMap"
         android:id="@+id/showMap" />
+
+
 
 </RelativeLayout>
