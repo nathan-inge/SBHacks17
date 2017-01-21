@@ -47,7 +47,7 @@ public class countyFinder {
         densitySearch = false;
 
         } catch (java.io.IOException z) {
-
+            System.out.println ("file not read");
         } catch (jxl.read.biff.BiffException x) {
 
         }
