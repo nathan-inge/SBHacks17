@@ -13,8 +13,13 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
     }
 
-    public void toMap(View view) {
+    public void toStreetMap(View view) {
         Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    public void toToPoMap(View view) {
+        Intent intent = new Intent(this, TopographicMap.class);
         startActivity(intent);
     }
 }
