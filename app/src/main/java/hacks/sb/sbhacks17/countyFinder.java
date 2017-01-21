@@ -186,7 +186,6 @@ public class countyFinder {
         return populationDensity;
     }
 
-// yo
 
     private String getString(int column, int row){
         Cell newCell = importCell(column,row);
