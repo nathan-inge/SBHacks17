@@ -31,21 +31,19 @@ public class MainActivity extends AppCompatActivity {
         mMapView.addMapScaleChangedListener(rh);
         mMapView.setMap(mMap);
 
-        /*Intent fromHome = getIntent();
+        Intent fromHome = getIntent();
 
         //Population Density
         String pop_density_str = fromHome.getStringExtra("POP_DENSITY");
         range population_density = formatRange(pop_density_str);
-        TextView popDensity = (TextView) findViewById(R.id.pop_density);
-        popDensity.setText("Population density range: " + population_density.getFloor() + " to " + population_density.getCeiling());
+
 
 
 
         //Median Household Income
         String med_income_str = fromHome.getStringExtra("MED_INCOME");
         range median_household_income = formatRange(med_income_str);
-        TextView medIncome = (TextView) findViewById(R.id.med_income);
-        medIncome.setText("Median household income range: " + median_household_income.getFloor() +" to " + median_household_income.getCeiling());*/
+
 
 
         //searches data for population density range
@@ -56,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         int numCounties = listPop.size();
 
         Context context = getApplicationContext();
-        String text = "Counties: ";
+        String text = "Counties: " + Integer.toString(numCounties);
         int duration = Toast.LENGTH_SHORT;
 
         Toast toast = Toast.makeText(context, text, duration);

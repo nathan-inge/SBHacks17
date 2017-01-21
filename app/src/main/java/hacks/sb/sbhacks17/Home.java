@@ -27,7 +27,7 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         getSupportActionBar().setTitle("DreamHouse");
 
-        /*//Initialize Population Spinner
+        //Initialize Population Spinner
         spinnerPop = (Spinner) findViewById(R.id.spinnerPop);
         spinnerMedIncome = (Spinner) findViewById(R.id.spinnerIncome);
 
@@ -41,13 +41,15 @@ public class Home extends AppCompatActivity {
                 R.array.house_income, android.R.layout.simple_spinner_item);
         medIncome.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerMedIncome.setAdapter(medIncome);
-*/
 
     }
 
     public void showMap(View view) {
 
         Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra(POP_DENSITY, spinnerPop.getSelectedItem().toString());
+        intent.putExtra(MED_INCOME, spinnerMedIncome.getSelectedItem().toString());
+
 
         startActivity(intent);
     }
