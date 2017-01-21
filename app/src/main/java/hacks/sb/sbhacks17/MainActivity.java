@@ -1,5 +1,6 @@
 package hacks.sb.sbhacks17;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import com.esri.arcgisruntime.mapping.Basemap;
 import com.esri.arcgisruntime.mapping.view.MapView;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -32,10 +34,7 @@ public class MainActivity extends AppCompatActivity {
         TextView popDensity = (TextView) findViewById(R.id.pop_density);
         popDensity.setText("Population density range: " + population_density.getFloor() + " to " + population_density.getCeiling());
 
-        //searches data for population density range  adasdasdasdsa
-        countyFinder finder = new countyFinder();
-        finder.addSearch("density", population_density.getFloor(),population_density.getCeiling());
-        countyList list = finder.search();
+
 
         //Median Household Income
         String med_income_str = fromHome.getStringExtra("MED_INCOME");
@@ -44,6 +43,19 @@ public class MainActivity extends AppCompatActivity {
         medIncome.setText("Median household income range: " + median_household_income.getFloor() +" to " + median_household_income.getCeiling());
 
 
+        //searches data for population density range
+        countyFinder finder = new countyFinder();
+        finder.addSearch("density", 20, 50);
+        finder.addSearch("household.income", median_household_income.getFloor(), median_household_income.getCeiling());
+        countyList listPop = finder.search();
+        int numCounties = listPop.size();
+
+        Context context = getApplicationContext();
+        String text = "Counties: ";
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
 
 
 
