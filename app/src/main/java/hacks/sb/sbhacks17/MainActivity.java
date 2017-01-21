@@ -47,9 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public static range formatRange(String raw_data) {
-        if(raw_data == "No preference")
-            return new range(0,0);
-        else {
+        try{
             String[] parts = raw_data.split(" - ");
             String floor_str = parts[0].replaceAll("[^\\w\\s]","");
             String ceiling_str = parts[1].replaceAll("[^\\w\\s]","");
@@ -57,7 +55,8 @@ public class MainActivity extends AppCompatActivity {
             int ceiling = Integer.parseInt(ceiling_str);
 
             return new range(floor, ceiling);
-
+        }catch (ArrayIndexOutOfBoundsException e){
+            return new range(0, 0);
         }
 
     }
