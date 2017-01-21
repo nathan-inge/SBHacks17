@@ -17,7 +17,7 @@ public class Home extends AppCompatActivity {
     public final static String MED_INCOME = "MED_INCOME";
 
     private static Spinner spinnerPop;
-    private static Spinner spinnerMedInc;
+    private static Spinner spinnerMedIncome;
 
 
 
@@ -27,35 +27,27 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         getSupportActionBar().setTitle("DreamHouse");
 
-        //Population Spinner
+        /*//Initialize Population Spinner
         spinnerPop = (Spinner) findViewById(R.id.spinnerPop);
+        spinnerMedIncome = (Spinner) findViewById(R.id.spinnerIncome);
+
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.pop_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerPop.setAdapter(adapter);
 
-        //Median Income Spinner
-        spinnerMedInc = (Spinner) findViewById(R.id.spinnerIncome);
-        ArrayAdapter<CharSequence> adapterInc = ArrayAdapter.createFromResource(this,
+        //Initialize Median Income Spinner
+        ArrayAdapter<CharSequence> medIncome = ArrayAdapter.createFromResource(this,
                 R.array.house_income, android.R.layout.simple_spinner_item);
-        adapterInc.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerMedInc.setAdapter(adapterInc);
-
-
-
-
-
+        medIncome.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerMedIncome.setAdapter(medIncome);
+*/
 
     }
 
     public void showMap(View view) {
 
         Intent intent = new Intent(this, MainActivity.class);
-
-        String popDensity = spinnerPop.getSelectedItem().toString();
-        String medIncome = spinnerMedInc.getSelectedItem().toString();
-        intent.putExtra(POP_DENSITY, popDensity);
-        intent.putExtra(MED_INCOME, medIncome);
 
         startActivity(intent);
     }
@@ -68,5 +60,3 @@ public class Home extends AppCompatActivity {
 
 
 }
-
-

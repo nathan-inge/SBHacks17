@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private MapView mMapView;
+    private RegionHighlighter rh;
 
 
     @Override
@@ -23,10 +24,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mMapView = (MapView) findViewById(R.id.mapView);
-        ArcGISMap map = new ArcGISMap(Basemap.Type.STREETS_NIGHT_VECTOR, 34.056295, -117.195800, 16);
-        mMapView.setMap(map);
+        ArcGISMap mMap = new ArcGISMap(Basemap.Type.TOPOGRAPHIC, 35, -100, 3);
 
-        Intent fromHome = getIntent();
+
+        rh = new RegionHighlighter(mMapView);
+        mMapView.addMapScaleChangedListener(rh);
+        mMapView.setMap(mMap);
+
+        /*Intent fromHome = getIntent();
 
         //Population Density
         String pop_density_str = fromHome.getStringExtra("POP_DENSITY");
@@ -40,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         String med_income_str = fromHome.getStringExtra("MED_INCOME");
         range median_household_income = formatRange(med_income_str);
         TextView medIncome = (TextView) findViewById(R.id.med_income);
-        medIncome.setText("Median household income range: " + median_household_income.getFloor() +" to " + median_household_income.getCeiling());
+        medIncome.setText("Median household income range: " + median_household_income.getFloor() +" to " + median_household_income.getCeiling());*/
 
 
         //searches data for population density range
