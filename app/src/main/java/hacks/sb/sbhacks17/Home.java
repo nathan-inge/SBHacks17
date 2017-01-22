@@ -136,7 +136,7 @@ public class Home extends AppCompatActivity {
         Boolean kids = ((Switch) findViewById(R.id.kids)).isChecked(); //True = yes, false = no
 
 
-        //Add intents
+        //Add intents fdsf
         intent.putExtra(BUY_SELL, buyRent);
 
 
