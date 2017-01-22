@@ -76,9 +76,8 @@ public class countyList {
 
     public void print(){
         int size = countyList.<county>size();
-        System.out.println("Hello World");
         for (int count = 0; count < size; count++){
-            System.out.println(countyList.<county>get(count).name + " " + countyList.<county>get(count).population_density + " " + countyList.<county>get(count).householdIncome);
+            System.out.println(countyList.<county>get(count).name + " | " + countyList.<county>get(count).population_density + " | " + countyList.<county>get(count).householdIncome + " | " + countyList.<county>get(count).educationalValue + " | " + countyList.<county>get(count).mortgageRate);
 
         }
 

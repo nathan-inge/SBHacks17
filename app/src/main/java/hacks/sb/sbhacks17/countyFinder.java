@@ -17,7 +17,7 @@ import jxl.*;
  */
 
 public class countyFinder {
-// hi
+
     final private static int LOWER_RANGE_ROW = 2;
     final private static int UPPER_RANGE_ROW = 3198;
 
@@ -38,11 +38,16 @@ public class countyFinder {
 
 
     final static public String TYPE_EDUCATIONAL_VALUE = "educational.value";
-    final private static int COLUMN_POPULATION_COUNTY_FINDER= 5;
+    final private static int COLUMN_EDUCATIONAL_VALUE= 5;
     private boolean educationalValueSearch;
     private int educationalValueLowerBound;
     private int educationalValueUpperBound;
 
+    final static public String TYPE_MORTGAGE= "mortgage.value";
+    final private static int COLUMN_MORTGAGE_RATE = 6;
+    private boolean mortgageValueSearch;
+    private int mortgageValueLowerBound;
+    private int mortgageValueUpperBound;
 
     Workbook workbook;
     Sheet sheet;
@@ -80,8 +85,19 @@ public class countyFinder {
                 householdIncomeSearch = true;
                 householdIncomeLowerBound = lowerBound;
                 householdIncomeUpperBound = upperBound;
-                System.out.println(lowerBound + " " + upperBound);
                 break;
+
+            case TYPE_EDUCATIONAL_VALUE:
+                educationalValueSearch = true;
+                educationalValueLowerBound = lowerBound;
+                educationalValueUpperBound = upperBound;
+                break;
+            case TYPE_MORTGAGE:
+                mortgageValueSearch = true;
+                mortgageValueLowerBound = lowerBound;
+                mortgageValueUpperBound = upperBound;
+                break;
+
 
 
         }
@@ -108,6 +124,16 @@ public class countyFinder {
 
         if (householdIncomeSearch) {
             list =  find(householdIncomeLowerBound, householdIncomeUpperBound, COLUMN_POPULATION_MEDIAN_INCOME,list, TYPE_HOUSEHOLD_INCOME);
+        }
+
+        if(educationalValueSearch){
+            list =  find(educationalValueLowerBound, educationalValueUpperBound, COLUMN_EDUCATIONAL_VALUE,list, TYPE_EDUCATIONAL_VALUE);
+
+        }
+
+        if(mortgageValueSearch){
+            list =  find(mortgageValueLowerBound, mortgageValueUpperBound, COLUMN_MORTGAGE_RATE,list, TYPE_MORTGAGE);
+
         }
 
         return list;
@@ -144,15 +170,13 @@ public class countyFinder {
             int size = currentList.size();
             for (int count = 0; count < size; count++) {
                 double field = currentList.element(count).getField(type);
-                System.out.println(field);
 
                 if (field < lowerBound || field > upperBound) {
-                    System.out.println("removing element " + field);
                     currentList.countyList.remove(count);
                     size = currentList.size();
                     count = 0;
 
-                } System.out.println(currentList.size());
+                }
 
 
             }
@@ -168,13 +192,16 @@ public class countyFinder {
 
 
 
+// add shit here
 
     private county extractCounty(int row){
         String name = getString(COLUMN_COUNTY_NAME, row);
         double population_density = getDouble(COLUMN_POPULATION_DENSITY, row);
         double householdIncome = getDouble(COLUMN_POPULATION_MEDIAN_INCOME, row);
+        double educationalValue = getDouble(COLUMN_EDUCATIONAL_VALUE, row);
+        double mortgageRate = getDouble(COLUMN_MORTGAGE_RATE, row);
 
-        return new county (name,population_density,householdIncome, row);
+        return new county (name,population_density,householdIncome,educationalValue,mortgageRate, row);
     }
 
 
@@ -197,16 +224,16 @@ public class countyFinder {
     private double getDouble(int column, int row){
         assert (column !=0 && row != 1);
         Cell newCell = importCell(column,row);
-        double populationDensity = Double.parseDouble(newCell.getContents().replace(",","."));
-        return populationDensity;
+        double sample = Double.parseDouble(newCell.getContents().replace(",","."));
+        return sample;
     }
 
 
 
     private String getString(int column, int row){
         Cell newCell = importCell(column,row);
-        String populationDensity = newCell.getContents();
-        return populationDensity;
+        String sample= newCell.getContents();
+        return sample;
     }
 
 
@@ -217,6 +244,9 @@ public class countyFinder {
 
 
 }
+
+
+
 
 
 
