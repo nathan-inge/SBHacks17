@@ -116,21 +116,20 @@ public class Home extends AppCompatActivity {
 
         Intent intent = new Intent(this, MainActivity.class);
 
-
-        /*range population_density = formatPopRange(spinnerPop.getSelectedItem().toString());
-        range median_household_income = formatIncomeRange(spinnerMedIncome.getSelectedItem().toString());
+        range population_density = formatPopRange(spinnerPop.getSelectedItemPosition());
+        range median_household_income = formatIncomeRange(spinnerMedIncome.getSelectedItemPosition());
 
         //searches data for population density range
         countyFinder finder = new countyFinder();
-        finder.addSearch("density", 20, 50);
-        finder.addSearch("household.income", median_household_income.getFloor(), median_household_income.getCeiling());
+        finder.addSearch(finder.TYPE_DENSITY, population_density.getFloor(), population_density.getCeiling());
+        finder.addSearch(finder.TYPE_HOUSEHOLD_INCOME, median_household_income.getFloor(), median_household_income.getCeiling());
+
         countyList listPop = finder.search();
-        int numCounties = listPop.size();*/
+        int numCounties = listPop.size();
 
 
 
-        range population_density = formatPopRange(spinnerPop.getSelectedItemPosition());
-        range median_household_income = formatIncomeRange(spinnerMedIncome.getSelectedItemPosition());
+
 
         Boolean buyRent = ((Switch) findViewById(R.id.buy_sell)).isChecked(); //True = rent, false = buy
         Boolean kids = ((Switch) findViewById(R.id.kids)).isChecked(); //True = yes, false = no
