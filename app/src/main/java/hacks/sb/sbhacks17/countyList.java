@@ -5,40 +5,23 @@ package hacks.sb.sbhacks17;
 /**
  * Created by MLH-Admin on 1/21/2017.
  */
+
+
+/**
+ * Created by MLH-Admin on 1/21/2017.
+ */
+import java.util.ArrayList;
+import java.util.List;
+
 public class countyList {
-    county [] countyList;
-    private int allocated;
-    private int usedSpace;
-    private int currentCounty;
+    public List <county> countyList;
     public boolean isNewList;
 
 
 
     public countyList(){
-        countyList = new county [10];
-        allocated = 10;
-        usedSpace = 0;
-        currentCounty = 0;
-        isNewList = false;
-    }
-
-
-
-
-    public countyList(boolean placeHolder){
+        countyList = new ArrayList<county>();
         isNewList = true;
-
-    }
-
-
-
-
-
-    public countyList(countyList copyFrom){
-        for (int count = 0; count < usedSpace; count++)
-            copyFrom.addCounty(countyList[count]);
-
-
     }
 
 
@@ -46,30 +29,20 @@ public class countyList {
 
 
 
+    public countyList(countyList list){
+        countyList = new ArrayList<county>();
+        int size = list.countyList.size();
 
-
-
-    public void refreshFlow(){
-        currentCounty = 0;
-
+        for (int count = 0; count < size; count ++)
+            countyList.add(list.countyList.get(count));
     }
 
 
 
 
-
-    public void removePrevious(){
-
-        int indexToRemove = currentCounty - 1;
-        System.out.println("removing " + indexToRemove + " cuz it is " + countyList[indexToRemove].householdIncome);
-        countyList newList = new countyList();
-        for (int count = 0; count < usedSpace; count++) {
-            if (count != indexToRemove) {
-                System.out.println("keeping " + count);
-                newList.addCounty(countyList[count]);
-            }
-        }
-        usedSpace--;
+    public county element(int element){
+        assert (element < countyList.size());
+        return countyList.get(element);
     }
 
 
@@ -77,35 +50,10 @@ public class countyList {
 
 
 
+    public void removeElement(int element){
 
-
-
-
-    public county next(boolean moveOn){
-
-        if(currentCounty < usedSpace){
-            if(moveOn)
-                currentCounty++;
-            return countyList[currentCounty - 1];
-        } else
-            return new county();
-
+        countyList.remove(element);
     }
-
-
-
-    public boolean ended(){
-        return currentCounty >= usedSpace;
-    }
-
-
-
-
-
-
-
-
-
 
 
 
@@ -114,48 +62,25 @@ public class countyList {
 
 
     public void addCounty (county newCounty){
-        countyList[usedSpace] = new county(newCounty);
-        usedSpace++;
-
-        if(usedSpace == allocated)
-            reallocate();
-
+        isNewList = false;
+        countyList.add(newCounty);
     }
 
 
 
     public int size(){
-        return usedSpace;
+        return countyList.<county>size();
     }
 
-
-
-    private void reallocate() {
-        int newSize = allocated * 2;
-        county [] newList = new county [newSize];
-
-        for (int count = 0; count < usedSpace; count++) {
-            newList[count] = countyList[count];
-        }
-
-        allocated = newSize;
-        countyList = new county[allocated];
-
-        for (int count = 0; count < usedSpace; count++) {
-            countyList[count] = newList[count];
-        }
-    }
 
 
     public void print(){
-
-        for (int count = 0; count < usedSpace; count++){
-            System.out.println(countyList[count].name + " " + countyList[count].population_density + " " + countyList[count].householdIncome);
-
+        int size = countyList.<county>size();
+        System.out.println("Hello World");
+        for (int count = 0; count < size; count++){
+            System.out.println(countyList.<county>get(count).name + " " + countyList.<county>get(count).population_density + " " + countyList.<county>get(count).householdIncome);
 
         }
-
-
 
     }
 }

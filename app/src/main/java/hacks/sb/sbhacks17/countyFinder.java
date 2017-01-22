@@ -19,24 +19,29 @@ import jxl.*;
 public class countyFinder {
 
     final private static int LOWER_RANGE_ROW = 2;
-    final private static int UPPER_RANGE_ROW = 3199;
+    final private static int UPPER_RANGE_ROW = 3198;
 
     final private static int COLUMN_COUNTY_NAME = 0;
 
-    final public String TYPE_DENSITY = "density";
+    final static public String TYPE_DENSITY = "density";
     final private static int COLUMN_POPULATION_DENSITY = 3;
     private boolean densitySearch;
     private int densityLowerBound;
     private int densityUpperBound;
 
 
-    final public String TYPE_HOUSEHOLD_INCOME = "household.income";
+    final static public String TYPE_HOUSEHOLD_INCOME = "household.income";
     final private static int COLUMN_POPULATION_MEDIAN_INCOME = 4;
     private boolean householdIncomeSearch;
     private int householdIncomeLowerBound;
     private int householdIncomeUpperBound;
 
 
+    final static public String TYPE_EDUCATIONAL_VALUE = "educational.value";
+    final private static int COLUMN_POPULATION_COUNTY_FINDER= 5;
+    private boolean educationalValueSearch;
+    private int educationalValueLowerBound;
+    private int educationalValueUpperBound;
 
 
     Workbook workbook;
@@ -46,6 +51,7 @@ public class countyFinder {
         try{
             workbook = Workbook.getWorkbook(new File("stats.xls"));
             sheet = workbook.getSheet(0);
+
 
             householdIncomeSearch = false;
             densitySearch = false;
@@ -74,6 +80,7 @@ public class countyFinder {
                 householdIncomeSearch = true;
                 householdIncomeLowerBound = lowerBound;
                 householdIncomeUpperBound = upperBound;
+                System.out.println(lowerBound + " " + upperBound);
                 break;
 
 
@@ -90,9 +97,8 @@ public class countyFinder {
 
 
 
-
     public countyList search() {
-        countyList list = new countyList(true);
+        countyList list = new countyList();
 
 
         if (densitySearch) {
@@ -101,7 +107,7 @@ public class countyFinder {
 
 
         if (householdIncomeSearch) {
-            list = find(0, 30000, 4,list, TYPE_HOUSEHOLD_INCOME);
+            list =  find(householdIncomeLowerBound, householdIncomeUpperBound, COLUMN_POPULATION_MEDIAN_INCOME,list, TYPE_HOUSEHOLD_INCOME);
         }
 
         return list;
@@ -122,30 +128,39 @@ public class countyFinder {
 
 
     private countyList find(int lowerBound, int upperBound, int column, countyList currentList, String type) {
-        if(currentList.isNewList) {
-            countyList list = new countyList();
+        if (currentList.isNewList) {
 
             for (int count = 1; count < UPPER_RANGE_ROW; count++) {
                 double field = getDouble(column, count);
                 if (field >= lowerBound && field <= upperBound) {
 
                     county newCounty = extractCounty(count);
-                    list.addCounty(newCounty);
+                    currentList.addCounty(newCounty);
                 }
             }
 
-            return list;
+            return currentList;
         } else {
+            int size = currentList.size();
+            for (int count = 0; count < size; count++) {
+                double field = currentList.element(count).getField(type);
+                System.out.println(field);
 
-            while (!(currentList.ended())) {
-                System.out.println("hello im a bitch");
-                double field = currentList.next(true).getField(type);
                 if (field < lowerBound || field > upperBound) {
-                    currentList.removePrevious();
-                }
+                    System.out.println("removing element " + field);
+                    currentList.countyList.remove(count);
+                    size = currentList.size();
+                    count = 0;
+
+                } System.out.println(currentList.size());
+
+
             }
             return currentList;
+
         }
+
+
 
     }
 
@@ -157,7 +172,7 @@ public class countyFinder {
     private county extractCounty(int row){
         String name = getString(COLUMN_COUNTY_NAME, row);
         double population_density = getDouble(COLUMN_POPULATION_DENSITY, row);
-        double householdIncome = getDouble(4, row);
+        double householdIncome = getDouble(COLUMN_POPULATION_MEDIAN_INCOME, row);
 
         return new county (name,population_density,householdIncome, row);
     }
@@ -185,6 +200,7 @@ public class countyFinder {
         double populationDensity = Double.parseDouble(newCell.getContents().replace(",","."));
         return populationDensity;
     }
+
 
 
     private String getString(int column, int row){
