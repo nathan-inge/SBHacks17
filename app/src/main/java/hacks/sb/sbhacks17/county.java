@@ -10,6 +10,8 @@ public class county {
     public double householdIncome;
     public double educationalValue;
     public double mortgageRate;
+    public double lat;
+    public double lon;
 //yo
     public int row;
 

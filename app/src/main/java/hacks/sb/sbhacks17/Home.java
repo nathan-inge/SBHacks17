@@ -48,22 +48,6 @@ public class Home extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerPop.setAdapter(adapter);
 
-        spinnerPop.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                int item = parent.getSelectedItemPosition();
-                range population_density = formatPopRange(item);
-
-                Context context = getApplicationContext();
-                CharSequence text = "Population Range: " + Integer.toString(population_density.getFloor()) + " to " + Integer.toString(population_density.getCeiling());
-
-                int duration = Toast.LENGTH_SHORT;
-
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
-            }
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
 
 
 
@@ -73,53 +57,12 @@ public class Home extends AppCompatActivity {
         medIncome.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerMedIncome.setAdapter(medIncome);
 
-        spinnerMedIncome.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                int item = parent.getSelectedItemPosition();
-                range median_household_income = formatIncomeRange(item);
-
-                Context context = getApplicationContext();
-                CharSequence text = "Economic Range: " + Integer.toString(median_household_income.getFloor()) + " to " + Integer.toString(median_household_income.getCeiling());
-
-                int duration = Toast.LENGTH_SHORT;
-
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
-            }
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
 
         //Initialize Cost of Living
         ArrayAdapter<CharSequence> costLiving = ArrayAdapter.createFromResource(this,
                 R.array.cost_living, android.R.layout.simple_spinner_item);
         costLiving.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCostLiving.setAdapter(costLiving);
-
-        spinnerCostLiving.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                int item = parent.getSelectedItemPosition();
-                range cost_living = formatCostLiving(item);
-
-                Context context = getApplicationContext();
-                CharSequence text = "Cost of Living Range: " + Integer.toString(cost_living.getFloor()) + " to " + Integer.toString(cost_living.getCeiling());
-
-                int duration = Toast.LENGTH_SHORT;
-
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
-            }
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-
-
-
-
-
-
-
-
 
 
 
