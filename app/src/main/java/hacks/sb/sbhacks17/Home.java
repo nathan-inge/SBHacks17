@@ -33,16 +33,54 @@ public class Home extends AppCompatActivity {
         spinnerPop = (Spinner) findViewById(R.id.spinnerPop);
         spinnerMedIncome = (Spinner) findViewById(R.id.spinnerIncome);
 
+
+        //Population Range
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.pop_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerPop.setAdapter(adapter);
+
+        spinnerPop.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                int item = parent.getSelectedItemPosition();
+                range population_density = formatPopRange(item);
+
+                Context context = getApplicationContext();
+                CharSequence text = "Population Range: " + Integer.toString(population_density.getFloor()) + " to " + Integer.toString(population_density.getCeiling());
+
+                int duration = Toast.LENGTH_SHORT;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+            }
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+
 
         //Initialize Median Income Spinner
         ArrayAdapter<CharSequence> medIncome = ArrayAdapter.createFromResource(this,
                 R.array.house_income, android.R.layout.simple_spinner_item);
         medIncome.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerMedIncome.setAdapter(medIncome);
+
+        spinnerMedIncome.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                int item = parent.getSelectedItemPosition();
+                range median_household_income = formatIncomeRange(item);
+
+                Context context = getApplicationContext();
+                CharSequence text = "Economic Range: " + Integer.toString(median_household_income.getFloor()) + " to " + Integer.toString(median_household_income.getCeiling());
+
+                int duration = Toast.LENGTH_SHORT;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+            }
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
 
 
 
@@ -69,6 +107,14 @@ public class Home extends AppCompatActivity {
         countyList listPop = finder.search();
         int numCounties = listPop.size();*/
 
+
+
+        range population_density = formatPopRange(spinnerPop.getSelectedItemPosition());
+        range median_household_income = formatIncomeRange(spinnerMedIncome.getSelectedItemPosition());
+
+
+
+
         startActivity(intent);
     }
 
@@ -78,27 +124,27 @@ public class Home extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public static range formatPopRange(String raw_data) {
+    public static range formatPopRange(int raw_data) {
         int floor;
         int ceiling;
 
-        if(raw_data == "Countryside"){
+        if(raw_data == 1){
             floor = 0;
             ceiling = 500;
         }
-        else if(raw_data == "Small Town"){
+        else if(raw_data == 2){
             floor = 500;
             ceiling = 3000;
         }
-        else if(raw_data == "Large Town"){
+        else if(raw_data == 3){
             floor = 3000;
             ceiling = 5000;
         }
-        else if(raw_data == "City"){
+        else if(raw_data == 4){
             floor = 5000;
             ceiling = 10000;
         }
-        else if(raw_data == "Mega City"){
+        else if(raw_data == 5){
             floor = 5000;
             ceiling = 50000;
         }
@@ -114,27 +160,27 @@ public class Home extends AppCompatActivity {
     }
 
 
-    public static range formatIncomeRange(String raw_data) {
+    public static range formatIncomeRange(int raw_data) {
         int floor;
         int ceiling;
 
-        if(raw_data == "Lower Class"){
+        if(raw_data == 1){
             floor = 0;
             ceiling = 25000;
         }
-        else if(raw_data == "Lower Middle Class"){
+        else if(raw_data == 2){
             floor = 25000;
             ceiling = 60000;
         }
-        else if(raw_data == "Middle Class"){
+        else if(raw_data == 3){
             floor = 60000;
             ceiling = 100000;
         }
-        else if(raw_data == "Upper Middle Class"){
+        else if(raw_data == 4){
             floor = 100000;
             ceiling = 150000;
         }
-        else if(raw_data == "Upper Class"){
+        else if(raw_data == 5){
             floor = 150000;
             ceiling = 1000000;
         }
