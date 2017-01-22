@@ -25,7 +25,10 @@
         android:layout_alignBottom="@+id/spinnerPop"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="28dp"
-        android:id="@+id/textPop" />
+        android:id="@+id/textPop"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="#303F9F"
+        android:textSize="18sp" />
 
     <Spinner
         android:layout_width="match_parent"
@@ -43,16 +46,10 @@
         android:id="@+id/textIncome"
         android:layout_below="@+id/spinnerPop"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp" />
-
-    <Spinner
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/spinnerIncome"
-        android:layout_below="@+id/textIncome"
-        android:layout_alignRight="@+id/Prompt"
-        android:layout_alignEnd="@+id/Prompt" />
-
+        android:layout_marginTop="20dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="#303F9F"
+        android:textSize="18sp" />
 
 
     <Button
@@ -78,16 +75,95 @@
         android:layout_above="@+id/showMap"
         android:layout_toLeftOf="@+id/buy_sell"
         android:layout_toStartOf="@+id/buy_sell"
-        android:id="@+id/buy" />
+        android:id="@+id/buy"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="#303F9F"
+        android:textSize="18sp" />
+
+    <TextView
+        android:text="Children K-12?"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="33dp"
+        android:id="@+id/children"
+        android:layout_below="@+id/spinnerIncome"
+        android:layout_alignLeft="@+id/showMap"
+        android:layout_alignStart="@+id/showMap"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="#303F9F"
+        android:textSize="18sp" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/kids"
+        android:layout_alignTop="@+id/children"
+        android:layout_toRightOf="@+id/textPop"
+        android:layout_alignRight="@+id/showMap"
+        android:layout_alignEnd="@+id/showMap" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerIncome"
+        android:layout_below="@+id/textIncome"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:text="Region"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/kids"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="17dp"
+        android:id="@+id/region"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="#303F9F"
+        android:textSize="18sp" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/region"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="11dp"
+        android:id="@+id/spinnerRegion" />
 
     <TextView
         android:text="Rent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/Rent"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="?attr/actionModeSplitBackground"
+        android:textSize="18sp"
         android:layout_above="@+id/showMap"
-        android:layout_toRightOf="@+id/textPop"
-        android:layout_toEndOf="@+id/textPop"
-        android:id="@+id/Rent" />
+        android:layout_toRightOf="@+id/region"
+        android:layout_toEndOf="@+id/region" />
+
+    <TextView
+        android:text="Landscape:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:id="@+id/terrain"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="#303F9F"
+        android:textSize="18sp"
+        android:layout_below="@+id/spinnerRegion"
+        android:layout_centerHorizontal="true" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:id="@+id/spinnerLandscape"
+        android:layout_below="@+id/terrain"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>
