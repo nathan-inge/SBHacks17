@@ -21,6 +21,7 @@ public class Home extends AppCompatActivity {
 
     private static Spinner spinnerPop;
     private static Spinner spinnerMedIncome;
+    private static Spinner spinnerCostLiving;
 
 
 
@@ -35,6 +36,7 @@ public class Home extends AppCompatActivity {
         //Initialize Population Spinner
         spinnerPop = (Spinner) findViewById(R.id.spinnerPop);
         spinnerMedIncome = (Spinner) findViewById(R.id.spinnerIncome);
+        spinnerCostLiving = (Spinner) findViewById((R.id.spinnerCost));
 
 
 
@@ -87,6 +89,12 @@ public class Home extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+
+        //Initialize Median Income Spinner
+        ArrayAdapter<CharSequence> costLiving = ArrayAdapter.createFromResource(this,
+                R.array.cost_living, android.R.layout.simple_spinner_item);
+        costLiving.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerCostLiving.setAdapter(costLiving);
 
 
 

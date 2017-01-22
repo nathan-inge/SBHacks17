@@ -125,5 +125,26 @@
         android:layout_toRightOf="@+id/buy_sell"
         android:layout_toEndOf="@+id/buy_sell" />
 
+    <TextView
+        android:text="Cost of Living"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/kids"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="45dp"
+        android:id="@+id/costLiving"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="#303F9F"
+        android:textSize="18sp" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/costLiving"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="19dp"
+        android:id="@+id/spinnerCost" />
+
 
 </RelativeLayout>
