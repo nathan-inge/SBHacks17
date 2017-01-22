@@ -2,6 +2,10 @@
  * Created by MLH-Admin on 1/21/2017.
  */
 
+/**
+ * Created by MLH-Admin on 1/21/2017.
+ */
+
 package hacks.sb.sbhacks17;
 
 public class county {
@@ -12,7 +16,7 @@ public class county {
     public double mortgageRate;
     public double lat;
     public double lon;
-//yo
+    //yo
     public int row;
 
     public county(String name, double density, double householdIncomeToAdd, double educationalRating, double mortgageMedian ,int row){

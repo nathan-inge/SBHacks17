@@ -16,7 +16,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:id="@+id/Prompt" />
+        android:id="@+id/Prompt"
+        android:textSize="18sp"
+        android:textColor="?attr/colorPrimaryDark"
+        android:textStyle="normal|bold|italic" />
 
     <TextView
         android:text="Setting:"
@@ -27,7 +30,7 @@
         android:layout_marginBottom="28dp"
         android:id="@+id/textPop"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textColor="#303F9F"
+        android:textColor="?attr/colorPrimaryDark"
         android:textSize="18sp" />
 
     <Spinner
