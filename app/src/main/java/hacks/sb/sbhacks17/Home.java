@@ -16,13 +16,13 @@ import com.esri.arcgisruntime.portal.Portal;
 import com.esri.arcgisruntime.portal.PortalInfo;
 
 public class Home extends AppCompatActivity {
-    public final static String POP_DENSITY = "POP_DENSITY";
-    public final static String MED_INCOME = "MED_INCOME";
+    public final static String COUNTIES_LIST = "COUNTIES_LIST";
+    public final static String BUY_SELL = "BUY_SELL";
 
     private static Spinner spinnerPop;
     private static Spinner spinnerMedIncome;
-    private static Spinner spinnerLandscape;
-    private static Spinner spinnerRegion;
+    private static Spinner spinnerCostLiving;
+
 
 
 
@@ -36,8 +36,8 @@ public class Home extends AppCompatActivity {
         //Initialize Population Spinner
         spinnerPop = (Spinner) findViewById(R.id.spinnerPop);
         spinnerMedIncome = (Spinner) findViewById(R.id.spinnerIncome);
-        spinnerLandscape = (Spinner) findViewById(R.id.spinnerLandscape);
-        spinnerRegion = (Spinner) findViewById(R.id.spinnerRegion);
+        spinnerCostLiving = (Spinner) findViewById((R.id.spinnerCost));
+
 
 
 
@@ -90,17 +90,30 @@ public class Home extends AppCompatActivity {
             }
         });
 
-        //Region Spinner
-        ArrayAdapter<CharSequence> adapterRegion = ArrayAdapter.createFromResource(this,
-                R.array.region_array, android.R.layout.simple_spinner_item);
-        adapterRegion.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerRegion.setAdapter(adapterRegion);
+        //Initialize Cost of Living
+        ArrayAdapter<CharSequence> costLiving = ArrayAdapter.createFromResource(this,
+                R.array.cost_living, android.R.layout.simple_spinner_item);
+        costLiving.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerCostLiving.setAdapter(costLiving);
 
-        //Landscape Spinner
-        ArrayAdapter<CharSequence> adapterLandscape = ArrayAdapter.createFromResource(this,
-                R.array.landscape_array, android.R.layout.simple_spinner_item);
-        adapterLandscape.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerLandscape.setAdapter(adapterLandscape);
+        spinnerCostLiving.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                int item = parent.getSelectedItemPosition();
+                range cost_living = formatCostLiving(item);
+
+                Context context = getApplicationContext();
+                CharSequence text = "Cost of Living Range: " + Integer.toString(cost_living.getFloor()) + " to " + Integer.toString(cost_living.getCeiling());
+
+                int duration = Toast.LENGTH_SHORT;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+            }
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+
 
 
 
@@ -116,25 +129,44 @@ public class Home extends AppCompatActivity {
 
         Intent intent = new Intent(this, MainActivity.class);
 
+        //Switch values
+        Boolean buyRent = ((Switch) findViewById(R.id.buy_sell)).isChecked(); //True = rent, false = buy
+        Boolean kids = ((Switch) findViewById(R.id.kids)).isChecked(); //True = yes, false = no
+
+
+        //Range objects for search criteria
         range population_density = formatPopRange(spinnerPop.getSelectedItemPosition());
         range median_household_income = formatIncomeRange(spinnerMedIncome.getSelectedItemPosition());
+        range cost_living = formatCostLiving(spinnerCostLiving.getSelectedItemPosition());
+        range education = formatEducation(kids);
 
         //searches data for population density range
         countyFinder finder = new countyFinder();
         finder.addSearch(finder.TYPE_DENSITY, population_density.getFloor(), population_density.getCeiling());
         finder.addSearch(finder.TYPE_HOUSEHOLD_INCOME, median_household_income.getFloor(), median_household_income.getCeiling());
 
-        countyList listPop = finder.search();
+        countyList listCounties = finder.search();
 
-
-        int numCounties = listPop.size();
-
+        int numCounties = listCounties.size();
 
 
 
 
-        Boolean buyRent = ((Switch) findViewById(R.id.buy_sell)).isChecked(); //True = rent, false = buy
-        Boolean kids = ((Switch) findViewById(R.id.kids)).isChecked(); //True = yes, false = no
+        String []stringListCounties = new String[listCounties.size()];
+        for(int i = 0; i<stringListCounties.length; i++){
+            String name = listCounties.element(i).name;
+            //get lat and long
+            double lat;
+            double lon;
+
+            //stringListCounties[i] = name + ";" + lat + ";" + lon;
+
+        }
+        //Add intents
+        intent.putExtra(BUY_SELL, buyRent);
+
+
+
 
 
 
@@ -217,6 +249,53 @@ public class Home extends AppCompatActivity {
         return new range(floor, ceiling);
 
 
+    }
+
+    public static range formatCostLiving(int raw_data) {
+        int floor;
+        int ceiling;
+
+        if(raw_data == 1){
+            floor = 100;
+            ceiling = 600;
+        }
+        else if(raw_data == 2){
+            floor = 600;
+            ceiling = 1200;
+        }
+        else if(raw_data == 3){
+            floor = 1200;
+            ceiling = 1800;
+        }
+        else if(raw_data == 4){
+            floor = 1800;
+            ceiling = 2400;
+        }
+        else if(raw_data == 5){
+            floor = 2400;
+            ceiling = 5000;
+        }
+        else{
+            floor = 0;
+            ceiling = 50000;
+        }
+        return new range(floor, ceiling);
+    }
+
+    public static range formatEducation(boolean raw_data) {
+        int floor;
+        int ceiling;
+
+        if(raw_data == true){
+            floor = 90;
+            ceiling = 100;
+        }
+        else {
+            floor = 0;
+            ceiling = 100;
+        }
+
+        return new range(floor, ceiling);
     }
 
 

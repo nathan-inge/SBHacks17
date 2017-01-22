@@ -27,7 +27,8 @@ public class MainActivity extends AppCompatActivity {
         ArcGISMap mMap = new ArcGISMap(Basemap.Type.TOPOGRAPHIC, 35, -100, 3);
 
 
-        rh = new RegionHighlighter(mMapView);
+
+        //rh = new RegionHighlighter(mMapView);
         //rh.sendTo(mMapView.getContext(), "louisville", "co", "80027"); this is sketch
         //mMapView.addMapScaleChangedListener(rh);
         mMapView.setMap(mMap);

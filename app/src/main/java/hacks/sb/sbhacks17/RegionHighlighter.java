@@ -50,7 +50,6 @@ public class RegionHighlighter implements MapView.OnTouchListener {
         ListenableList list = mMapView.getGraphicsOverlays();
         while(!list.isEmpty())
             list.remove(0);
-        // add graphics overlay
         for(int i = 0; i < counties.length; i++) {
             highlightRegion(counties[i].lat, counties[i].lon, true);
         }
@@ -86,12 +85,8 @@ public class RegionHighlighter implements MapView.OnTouchListener {
         mMapView.getGraphicsOverlays().add(pointGraphicOverlay2);
     }
 
-    public void mapScaleChanged(MapScaleChangedEvent mapScaleChangedEvent) {
-        reset();
-    }
-
     public void sendTo(Context context, String name){
-        String urlString="http://www.zillow.com/" + name;
+        String urlString="http://www.zillow.com/homes/" + name;
         Intent intent=new Intent(Intent.ACTION_VIEW, Uri.parse(urlString));
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.setPackage("com.android.chrome");
@@ -187,20 +182,21 @@ public class RegionHighlighter implements MapView.OnTouchListener {
     boolean noMove;
     public boolean onTouch(View v, MotionEvent event) {
         Polygon p = mMapView.getVisibleArea();
-        ImmutablePart points = p.getParts().get(0);
-        Point upLeft = points.getPoint(2);
-        double width = points.getPoint(0).getX()- points.getPoint(2).getX();
-        double height = points.getPoint(0).getY()- points.getPoint(2).getY();
-        System.out.println(width + "\t" + height);
-        if(event.getAction() == MotionEvent.ACTION_DOWN)
-            noMove = true;
-        if(event.getAction() == MotionEvent.ACTION_MOVE)
-            noMove = false;
-        if(event.getAction() == MotionEvent.ACTION_UP && noMove){
-            double lat = upLeft.getX() + event.getX()/mMapView.getWidth()*width;
-            double lon = upLeft.getY() + event.getY()/mMapView.getHeight()*height;
-            double size = 50/mMapView.getWidth()*width;
-            checkTap(lat, lon, size);
+        if(p!= null) {
+            ImmutablePart points = p.getParts().get(0);
+            Point upLeft = points.getPoint(2);
+            double width = points.getPoint(0).getX() - points.getPoint(2).getX();
+            double height = points.getPoint(0).getY() - points.getPoint(2).getY();
+            if (event.getAction() == MotionEvent.ACTION_DOWN)
+                noMove = true;
+            if (event.getAction() == MotionEvent.ACTION_MOVE)
+                noMove = false;
+            if (event.getAction() == MotionEvent.ACTION_UP && noMove) {
+                double lat = upLeft.getX() + event.getX() / mMapView.getWidth() * width;
+                double lon = upLeft.getY() + event.getY() / mMapView.getHeight() * height;
+                double size = 100.0*width / mMapView.getWidth();
+                checkTap(lat, lon, size);
+            }
         }
         mapNavigation.onTouch(v, event);
         return true;
@@ -212,5 +208,6 @@ public class RegionHighlighter implements MapView.OnTouchListener {
                 sendTo(mMapView.getContext(),counties[i].name);
             }
         }
+
     }
 }

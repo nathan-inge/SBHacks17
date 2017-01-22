@@ -18,23 +18,16 @@
         <item>Upper Class</item>
     </string-array>
 
-    <string-array name="region_array">
+    <string-array name="cost_living">
         <item>No preference</item>
-        <item>East Coast</item>
-        <item>Midwest</item>
-        <item>South</item>
-        <item>Mountain West</item>
-        <item>West Coast</item>
+        <item>$100 - $600</item>
+        <item>$600 - $1,200</item>
+        <item>$1,200 - $1,800</item>
+        <item>$1,800 - $2,400</item>
+        <item>$2,400 - $5,000</item>
     </string-array>
 
-    <string-array name="landscape_array">
-        <item>No preference</item>
-        <item>Coast</item>
-        <item>Mountains</item>
-        <item>Plains</item>
-        <item>Lakes</item>
-        <item>Forest</item>
-    </string-array>
+
 
 
 </resources>
