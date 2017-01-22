@@ -86,7 +86,7 @@ public class countyFinder {
                 householdIncomeLowerBound = lowerBound;
                 householdIncomeUpperBound = upperBound;
                 break;
-
+//yo
             case TYPE_EDUCATIONAL_VALUE:
                 educationalValueSearch = true;
                 educationalValueLowerBound = lowerBound;

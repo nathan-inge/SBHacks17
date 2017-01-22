@@ -10,7 +10,7 @@ public class county {
     public double householdIncome;
     public double educationalValue;
     public double mortgageRate;
-
+//yo
     public int row;
 
     public county(String name, double density, double householdIncomeToAdd, double educationalRating, double mortgageMedian ,int row){
