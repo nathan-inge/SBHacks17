@@ -32,6 +32,8 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         getSupportActionBar().setTitle("DreamHouse");
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setIcon(R.mipmap.ic_launcher);
 
         //Initialize Population Spinner
         spinnerPop = (Spinner) findViewById(R.id.spinnerPop);
