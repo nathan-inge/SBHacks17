@@ -111,26 +111,7 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="10dp" />
 
-    <TextView
-        android:text="Region"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/kids"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="17dp"
-        android:id="@+id/region"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textColor="#303F9F"
-        android:textSize="18sp" />
 
-    <Spinner
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/region"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="11dp"
-        android:id="@+id/spinnerRegion" />
 
     <TextView
         android:text="Rent"
@@ -141,29 +122,8 @@
         android:textColor="?attr/actionModeSplitBackground"
         android:textSize="18sp"
         android:layout_above="@+id/showMap"
-        android:layout_toRightOf="@+id/region"
-        android:layout_toEndOf="@+id/region" />
-
-    <TextView
-        android:text="Landscape:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:id="@+id/terrain"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textColor="#303F9F"
-        android:textSize="18sp"
-        android:layout_below="@+id/spinnerRegion"
-        android:layout_centerHorizontal="true" />
-
-    <Spinner
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="13dp"
-        android:id="@+id/spinnerLandscape"
-        android:layout_below="@+id/terrain"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_toRightOf="@+id/buy_sell"
+        android:layout_toEndOf="@+id/buy_sell" />
 
 
 </RelativeLayout>

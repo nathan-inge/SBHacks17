@@ -18,23 +18,7 @@
         <item>Upper Class</item>
     </string-array>
 
-    <string-array name="region_array">
-        <item>No preference</item>
-        <item>East Coast</item>
-        <item>Midwest</item>
-        <item>South</item>
-        <item>Mountain West</item>
-        <item>West Coast</item>
-    </string-array>
 
-    <string-array name="landscape_array">
-        <item>No preference</item>
-        <item>Coast</item>
-        <item>Mountains</item>
-        <item>Plains</item>
-        <item>Lakes</item>
-        <item>Forest</item>
-    </string-array>
 
 
 </resources>

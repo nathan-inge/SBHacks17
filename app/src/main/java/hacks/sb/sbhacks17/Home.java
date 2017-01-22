@@ -21,8 +21,7 @@ public class Home extends AppCompatActivity {
 
     private static Spinner spinnerPop;
     private static Spinner spinnerMedIncome;
-    private static Spinner spinnerLandscape;
-    private static Spinner spinnerRegion;
+
 
 
 
@@ -36,8 +35,7 @@ public class Home extends AppCompatActivity {
         //Initialize Population Spinner
         spinnerPop = (Spinner) findViewById(R.id.spinnerPop);
         spinnerMedIncome = (Spinner) findViewById(R.id.spinnerIncome);
-        spinnerLandscape = (Spinner) findViewById(R.id.spinnerLandscape);
-        spinnerRegion = (Spinner) findViewById(R.id.spinnerRegion);
+
 
 
 
@@ -90,17 +88,7 @@ public class Home extends AppCompatActivity {
             }
         });
 
-        //Region Spinner
-        ArrayAdapter<CharSequence> adapterRegion = ArrayAdapter.createFromResource(this,
-                R.array.region_array, android.R.layout.simple_spinner_item);
-        adapterRegion.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerRegion.setAdapter(adapterRegion);
 
-        //Landscape Spinner
-        ArrayAdapter<CharSequence> adapterLandscape = ArrayAdapter.createFromResource(this,
-                R.array.landscape_array, android.R.layout.simple_spinner_item);
-        adapterLandscape.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerLandscape.setAdapter(adapterLandscape);
 
 
 
