@@ -136,7 +136,18 @@ public class Home extends AppCompatActivity {
         Boolean kids = ((Switch) findViewById(R.id.kids)).isChecked(); //True = yes, false = no
 
 
-        //Add intents fdsf
+
+        String []stringListCounties = new String[listCounties.size()];
+        for(int i = 0; i<stringListCounties.length; i++){
+            String name = listCounties.element(i).name;
+            //get lat and long
+            double lat;
+            double lon;
+
+            //stringListCounties[i] = name + ";" + lat + ";" + lon;
+
+        }
+        //Add intents
         intent.putExtra(BUY_SELL, buyRent);
 
 
