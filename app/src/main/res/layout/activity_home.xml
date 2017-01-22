@@ -64,5 +64,30 @@
         android:onClick="showMap"
         android:id="@+id/showMap" />
 
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/showMap"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/buy_sell" />
+
+    <TextView
+        android:text="Buy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/showMap"
+        android:layout_toLeftOf="@+id/buy_sell"
+        android:layout_toStartOf="@+id/buy_sell"
+        android:id="@+id/buy" />
+
+    <TextView
+        android:text="Rent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/showMap"
+        android:layout_toRightOf="@+id/textPop"
+        android:layout_toEndOf="@+id/textPop"
+        android:id="@+id/Rent" />
+
 
 </RelativeLayout>

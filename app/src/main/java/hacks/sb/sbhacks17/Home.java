@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.esri.arcgisruntime.loadable.LoadStatus;
@@ -111,6 +112,8 @@ public class Home extends AppCompatActivity {
 
         range population_density = formatPopRange(spinnerPop.getSelectedItemPosition());
         range median_household_income = formatIncomeRange(spinnerMedIncome.getSelectedItemPosition());
+
+        Boolean buyRent = ((Switch) findViewById(R.id.buy_sell)).isChecked(); //True = rent, false = buy
 
 
 
