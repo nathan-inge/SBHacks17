@@ -90,11 +90,28 @@ public class Home extends AppCompatActivity {
             }
         });
 
-        //Initialize Median Income Spinner
+        //Initialize Cost of Living
         ArrayAdapter<CharSequence> costLiving = ArrayAdapter.createFromResource(this,
                 R.array.cost_living, android.R.layout.simple_spinner_item);
         costLiving.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCostLiving.setAdapter(costLiving);
+
+        spinnerCostLiving.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                int item = parent.getSelectedItemPosition();
+                range cost_living = formatCostLiving(item);
+
+                Context context = getApplicationContext();
+                CharSequence text = "Cost of Living Range: " + Integer.toString(cost_living.getFloor()) + " to " + Integer.toString(cost_living.getCeiling());
+
+                int duration = Toast.LENGTH_SHORT;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+            }
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
 
 
 
@@ -112,8 +129,16 @@ public class Home extends AppCompatActivity {
 
         Intent intent = new Intent(this, MainActivity.class);
 
+        //Switch values
+        Boolean buyRent = ((Switch) findViewById(R.id.buy_sell)).isChecked(); //True = rent, false = buy
+        Boolean kids = ((Switch) findViewById(R.id.kids)).isChecked(); //True = yes, false = no
+
+
+        //Range objects for search criteria
         range population_density = formatPopRange(spinnerPop.getSelectedItemPosition());
         range median_household_income = formatIncomeRange(spinnerMedIncome.getSelectedItemPosition());
+        range cost_living = formatCostLiving(spinnerCostLiving.getSelectedItemPosition());
+        range education = formatEducation(kids);
 
         //searches data for population density range
         countyFinder finder = new countyFinder();
@@ -124,12 +149,6 @@ public class Home extends AppCompatActivity {
 
         int numCounties = listCounties.size();
 
-
-
-
-
-        Boolean buyRent = ((Switch) findViewById(R.id.buy_sell)).isChecked(); //True = rent, false = buy
-        Boolean kids = ((Switch) findViewById(R.id.kids)).isChecked(); //True = yes, false = no
 
 
 
@@ -230,6 +249,53 @@ public class Home extends AppCompatActivity {
         return new range(floor, ceiling);
 
 
+    }
+
+    public static range formatCostLiving(int raw_data) {
+        int floor;
+        int ceiling;
+
+        if(raw_data == 1){
+            floor = 100;
+            ceiling = 600;
+        }
+        else if(raw_data == 2){
+            floor = 600;
+            ceiling = 1200;
+        }
+        else if(raw_data == 3){
+            floor = 1200;
+            ceiling = 1800;
+        }
+        else if(raw_data == 4){
+            floor = 1800;
+            ceiling = 2400;
+        }
+        else if(raw_data == 5){
+            floor = 2400;
+            ceiling = 5000;
+        }
+        else{
+            floor = 0;
+            ceiling = 50000;
+        }
+        return new range(floor, ceiling);
+    }
+
+    public static range formatEducation(boolean raw_data) {
+        int floor;
+        int ceiling;
+
+        if(raw_data == true){
+            floor = 90;
+            ceiling = 100;
+        }
+        else {
+            floor = 0;
+            ceiling = 100;
+        }
+
+        return new range(floor, ceiling);
     }
 
 

@@ -126,7 +126,7 @@
         android:layout_toEndOf="@+id/buy_sell" />
 
     <TextView
-        android:text="Cost of Living"
+        android:text="Cost of Living (per month)"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/kids"
