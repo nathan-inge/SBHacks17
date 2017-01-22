@@ -10,6 +10,7 @@ public class county {
     public double householdIncome;
     public int row;
     public int place;
+    public double lat, lon;
 
     public county(String name, double density, double householdIncomeToAdd, int row){
         this.name = name;
