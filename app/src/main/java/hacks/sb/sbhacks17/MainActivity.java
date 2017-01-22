@@ -26,12 +26,30 @@ public class MainActivity extends AppCompatActivity {
         mMapView = (MapView) findViewById(R.id.mapView);
         ArcGISMap mMap = new ArcGISMap(Basemap.Type.TOPOGRAPHIC, 35, -100, 3);
 
-        mMapView.setMap(mMap);
-        county[] counties = new county[0];
-        rh = new RegionHighlighter(mMapView,counties);
+
+
+        //rh = new RegionHighlighter(mMapView);
         //rh.sendTo(mMapView.getContext(), "louisville", "co", "80027"); this is sketch
         //mMapView.addMapScaleChangedListener(rh);
+        mMapView.setMap(mMap);
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
+
+
+
+
 
     @Override
     protected void onPause(){
@@ -44,5 +62,8 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         mMapView.resume();
     }
+
+
+
 
 }

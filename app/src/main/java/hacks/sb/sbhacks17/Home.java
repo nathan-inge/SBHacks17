@@ -16,8 +16,8 @@ import com.esri.arcgisruntime.portal.Portal;
 import com.esri.arcgisruntime.portal.PortalInfo;
 
 public class Home extends AppCompatActivity {
-    public final static String POP_DENSITY = "POP_DENSITY";
-    public final static String MED_INCOME = "MED_INCOME";
+    public final static String COUNTIES_LIST = "COUNTIES_LIST";
+    public final static String BUY_SELL = "BUY_SELL";
 
     private static Spinner spinnerPop;
     private static Spinner spinnerMedIncome;
@@ -124,8 +124,9 @@ public class Home extends AppCompatActivity {
         finder.addSearch(finder.TYPE_DENSITY, population_density.getFloor(), population_density.getCeiling());
         finder.addSearch(finder.TYPE_HOUSEHOLD_INCOME, median_household_income.getFloor(), median_household_income.getCeiling());
 
-        countyList listPop = finder.search();
-        int numCounties = listPop.size();
+        countyList listCounties = finder.search();
+
+        int numCounties = listCounties.size();
 
 
 
@@ -133,6 +134,13 @@ public class Home extends AppCompatActivity {
 
         Boolean buyRent = ((Switch) findViewById(R.id.buy_sell)).isChecked(); //True = rent, false = buy
         Boolean kids = ((Switch) findViewById(R.id.kids)).isChecked(); //True = yes, false = no
+
+
+        //Add intents
+        intent.putExtra(BUY_SELL, buyRent);
+
+
+
 
 
 
