@@ -144,6 +144,10 @@ public class Home extends AppCompatActivity {
         countyFinder finder = new countyFinder();
         finder.addSearch(finder.TYPE_DENSITY, population_density.getFloor(), population_density.getCeiling());
         finder.addSearch(finder.TYPE_HOUSEHOLD_INCOME, median_household_income.getFloor(), median_household_income.getCeiling());
+        finder.addSearch(finder.TYPE_EDUCATIONAL_VALUE, education.getFloor(), education.getCeiling());
+        finder.addSearch(finder.TYPE_MORTGAGE, cost_living.getFloor(), cost_living.getCeiling());
+
+
 
         countyList listCounties = finder.search();
 
