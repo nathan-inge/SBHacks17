@@ -125,6 +125,8 @@ public class Home extends AppCompatActivity {
         finder.addSearch(finder.TYPE_HOUSEHOLD_INCOME, median_household_income.getFloor(), median_household_income.getCeiling());
 
         countyList listPop = finder.search();
+
+
         int numCounties = listPop.size();
 
 
